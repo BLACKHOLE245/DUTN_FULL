@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShoeMart - Cửa Hàng Giày Chất Lượng</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  <style>
+    :root {
+      --maximum-blue-green_10: hsla(185, 75%, 45%, 0.1);
+      --rich-black-fogra-29: hsl(217, 28%, 9%);
+      --gray-x-11-gray: hsl(0, 0%, 74%);
+      --oxford-blue_60: hsla(230, 41%, 14%, 0.6);
+      --bittersweet: hsl(5, 100%, 69%);
+      --smoky-black: rgb(7, 6, 1);
+      --gainsboro: hsl(0, 0%, 88%);
+      --black_90: hsla(0, 0%, 0%, 0.9);
+      --cultured: hsl(200, 12%, 95%);
+      --salmon: hsl(5, 100%, 73%);
+      --white: hsl(0, 0%, 100%);
+      --black: hsl(0, 0%, 0%);
+      --onyx: hsl(0, 0%, 27%);
+      --ff-roboto: 'Roboto', sans-serif;
+      --ff-josefin-sans: 'Josefin Sans', sans-serif;
+      --fs-1: 3rem;
+      --fs-2: 2.6rem;
+      --fs-3: 2.2rem;
+      --fs-4: 2rem;
+      --fs-5: 1.8rem;
+      --fs-6: 1.6rem;
+      --fs-7: 1.4rem;
+      --fs-8: 1.2rem;
+      --fw-300: 300;
+      --fw-500: 500;
+      --fw-600: 600;
+      --fw-700: 700;
+      --transition-1: 0.25s ease;
+      --transition-2: 0.5s ease;
+      --cubic-out: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+      --cubic-in: cubic-bezier(0.33, 0.85, 0.56, 1.02);
+      --section-padding: 60px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    li { list-style: none; }
+    a { text-decoration: none; }
+    a, img, span, table, tbody, button, ion-icon { display: block; }
+    button, input { font: inherit; background: none; border: none; }
+    input { width: 100%; }
+    button { cursor: pointer; }
+
+    html {
+      font-family: var(--ff-josefin-sans);
+      font-size: 10px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      font-size: 1.6rem;
+      padding-block-start: 90px;
+    }
+
+    .container { padding-inline: 15px; }
+    .section { padding-block: var(--section-padding); }
+    .h1, .h2, .h3, .h4 { color: var(--rich-black-fogra-29); }
+
+    .h1 {
+      font-size: var(--fs-1);
+      font-weight: var(--fw-300);
+      line-height: 1.5;
+    }
+
+    .h2 { font-size: var(--fs-2); }
+    .h3 { font-size: var(--fs-4); }
+    .h4 { font-size: var(--fs-5); text-transform: uppercase; }
+
+    .btn {
+      background: var(--background, var(--bittersweet));
+      color: var(--color, var(--white));
+      font-size: var(--fs-5);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 14px 25px;
+      border: 1px solid var(--border-color, var(--bittersweet));
+      border-radius: 5px;
+      transition: var(--transition-1);
+    }
+
+    .btn-primary:is(:hover, :focus) {
+      --background: var(--salmon);
+      --border-color: var(--salmon);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      --background: transparent;
+      --border-color: var(--black);
+      --color: var(--black);
+    }
+
+    .btn-secondary:is(:hover, :focus) { --background: hsla(0, 0%, 0%, 0.1); }
+
+    /* Header */
+    .header {
+      background: var(--white);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: var(--transition-1);
+      z-index: 4;
+      box-shadow: 0 2px 10px hsla(0, 0%, 0%, 0.1);
+    }
+
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 20px;
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+
+    .logo {
+      font-size: var(--fs-3);
+      font-weight: var(--fw-700);
+      color: var(--bittersweet);
+    }
+
+    .navbar {
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar-link {
+      color: var(--rich-black-fogra-29);
+      font-family: var(--ff-roboto);
+      font-weight: var(--fw-500);
+      transition: var(--transition-1);
+    }
+
+    .navbar-link:is(:hover, :focus) { color: var(--bittersweet); }
+
+    .nav-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: var(--bittersweet);
+      color: var(--white);
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 20px;
+      transition: var(--transition-1);
+    }
+
+    .cart-btn:hover { background: var(--salmon); }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--rich-black-fogra-29);
+      color: var(--white);
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--cultured) 0%, var(--white) 100%);
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ff6b6b" opacity="0.1"/></svg>');
+      background-size: 50px 50px;
+    }
+
+    .hero .container {
+      max-width: 1200px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      margin-bottom: 20px;
+      font-size: var(--fs-1);
+    }
+
+    .hero-text {
+      color: var(--onyx);
+      font-family: var(--ff-roboto);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .hero-image {
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-shoe {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      transform: rotate(-15deg);
+      transition: var(--transition-2);
+    }
+
+    .hero-shoe:hover {
+      transform: rotate(-10deg) scale(1.05);
+    }
+
+    /* Products Section */
+    .products {
+      background: var(--white);
+    }
+
+    .products .container {
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px hsla(0, 0%, 0%, 0.1);
+      transition: var(--transition-2);
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px hsla(0, 0%, 0%, 0.15);
+    }
+
+    .product-image {
+      position: relative;
+      height: 250px;
+      background: var(--cultured);
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-2);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.1);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--bittersweet);
+      color: var(--white);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: var(--fs-8);
+      font-weight: var(--fw-600);
+    }
+
+    .product-content {
+      padding: 20px;
+    }
+
+    .product-title {
+      font-size: var(--fs-6);
+      margin-bottom: 10px;
+      color: var(--rich-black-fogra-29);
+    }
+
+    .product-price {
+      font-size: var(--fs-5);
+      font-weight: var(--fw-600);
+      color: var(--bittersweet);
+      margin-bottom: 15px;
+    }
+
+    .add-to-cart {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Features Section */
+    .features {
+      background: var(--cultured);
+    }
+
+    .features .container {
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--white);
+      border-radius: 15px;
+      transition: var(--transition-1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      background: var(--bittersweet);
+      color: var(--white);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 30px;
+    }
+
+    .feature-title {
+      font-size: var(--fs-6);
+      margin-bottom: 10px;
+      color: var(--rich-black-fogra-29);
+    }
+
+    .feature-text {
+      color: var(--onyx);
+      font-family: var(--ff-roboto);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--rich-black-fogra-29);
+      color: var(--white);
+      padding: 50px 0 20px;
+    }
+
+    .footer .container {
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: var(--gray-x-11-gray);
+      line-height: 1.6;
+      transition: var(--transition-1);
+    }
+
+    .footer-section a:hover {
+      color: var(--bittersweet);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      background: var(--bittersweet);
+      color: var(--white);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-1);
+    }
+
+    .social-link:hover {
+      background: var(--salmon);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--onyx);
+      padding-top: 20px;
+      text-align: center;
+      color: var(--gray-x-11-gray);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar { display: none; }
+      
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .hero-content {
+        order: 2;
+      }
+      
+      .hero-image {
+        order: 1;
+      }
+      
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">ShoeMart</div>
+      
+      <nav class="navbar">
+        <a href="#home" class="navbar-link">Trang chủ</a>
+        <a href="#products" class="navbar-link">Sản phẩm</a>
+        <a href="#about" class="navbar-link">Giới thiệu</a>
+        <a href="#contact" class="navbar-link">Liên hệ</a>
+      </nav>
+      
+      <div class="nav-actions">
+        <button class="cart-btn">
+          <ion-icon name="bag-outline"></ion-icon>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="h1">
+          Bước Đi Phong Cách<br>
+          <strong>Với ShoeMart</strong>
+        </h1>
+        <p class="hero-text">
+          Khám phá bộ sưu tập giày thể thao, giày cao gót, giày da và nhiều mẫu giày thời trang khác. 
+          Chất lượng cao, giá cả hợp lý, phục vụ mọi phong cách của bạn.
+        </p>
+        <button class="btn btn-primary">
+          Mua sắm ngay
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+      
+      <div class="hero-image">
+        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23f5f5f5'/><path d='M50 150 Q200 50 350 150 Q200 250 50 150' fill='%23ff6b6b'/><circle cx='200' cy='130' r='40' fill='white'/><text x='200' y='135' text-anchor='middle' fill='%23333' font-size='14' font-family='Arial'>SHOE</text></svg>" 
+             alt="Giày thể thao" class="hero-shoe">
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products section" id="products">
+    <div class="container">
+      <h2 class="section-title h2">Sản Phẩm Nổi Bật</h2>
+      
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-badge">Hot</span>
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'><rect width='300' height='200' fill='%23f8f8f8'/><path d='M50 120 Q150 80 250 120 Q150 160 50 120' fill='%23333'/><circle cx='80' cy='110' r='8' fill='white'/><circle cx='220' cy='110' r='8' fill='white'/></svg>" alt="Giày thể thao">
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Giày Thể Thao Nike Air</h3>
+            <div class="product-price">1.590.000đ</div>
+            <button class="btn btn-primary add-to-cart">
+              Thêm vào giỏ
+            </button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-badge">Sale</span>
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'><rect width='300' height='200' fill='%23f8f8f8'/><path d='M60 130 Q150 90 240 130 L240 140 Q150 180 60 140 Z' fill='%238B4513'/><rect x='70' y='120' width='160' height='15' fill='%23654321'/></svg>" alt="Giày da">
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Giày Da Công Sở</h3>
+            <div class="product-price">2.290.000đ</div>
+            <button class="btn btn-primary add-to-cart">
+              Thêm vào giỏ
+            </button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-badge">New</span>
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'><rect width='300' height='200' fill='%23f8f8f8'/><path d='M70 140 Q150 100 230 140' fill='none' stroke='%23ff1493' stroke-width='8'/><rect x='80' y='135' width='140' height='10' fill='%23ff1493'/><line x1='100' y1='135' x2='105' y2='125' stroke='%23333' stroke-width='2'/></svg>" alt="Giày cao gót">
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Giày Cao Gót Elegant</h3>
+            <div class="product-price">1.890.000đ</div>
+            <button class="btn btn-primary add-to-cart">
+              Thêm vào giỏ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features section">
+    <div class="container">
+      <h2 class="section-title h2">Tại Sao Chọn ShoeMart?</h2>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <ion-icon name="shield-checkmark-outline"></ion-icon>
+          </div>
+          <h3 class="feature-title">Chất Lượng Đảm Bảo</h3>
+          <p class="feature-text">
+            Tất cả sản phẩm đều được kiểm tra chất lượng nghiêm ngặt trước khi đến tay khách hàng.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <ion-icon name="car-outline"></ion-icon>
+          </div>
+          <h3 class="feature-title">Giao Hàng Nhanh</h3>
+          <p class="feature-text">
+            Giao hàng miễn phí toàn quốc trong 24-48h. Đổi trả dễ dàng trong 30 ngày.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <h3 class="feature-title">Hỗ Trợ 24/7</h3>
+          <p class="feature-text">
+            Đội ngũ tư vấn chuyên nghiệp luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>ShoeMart</h3>
+          <p>
+            Cửa hàng giày uy tín với hàng ngàn mẫu giày thời trang cho mọi lứa tuổi. 
+            Cam kết chất lượng và dịch vụ tốt nhất.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Liên Kết Nhanh</h3>
+          <p><a href="#home">Trang chủ</a></p>
+          <p><a href="#products">Sản phẩm</a></p>
+          <p><a href="#about">Giới thiệu</a></p>
+          <p><a href="#contact">Liên hệ</a></p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Danh Mục</h3>
+          <p><a href="#">Giày thể thao</a></p>
+          <p><a href="#">Giày da</a></p>
+          <p><a href="#">Giày cao gót</a></p>
+          <p><a href="#">Giày trẻ em</a></p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Liên Hệ</h3>
+          <p>📍 123 Đường ABC, Quận 1, TP.HCM</p>
+          <p>📞 (028) 1234 5678</p>
+          <p>✉️ contact@shoemart.vn</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 ShoeMart. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple cart functionality
+    let cartCount = 0;
+    const cartBadge = document.querySelector('.cart-badge');
+    const addToCartBtns = document.querySelectorAll('.add-to-cart');
+
+    addToCartBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        cartCount++;
+        cartBadge.textContent = cartCount;
+        btn.textContent = 'Đã thêm!';
+        btn.style.background = 'var(--salmon)';
+        
+        setTimeout(() => {
+          btn.innerHTML = 'Thêm vào giỏ';
+          btn.style.background = 'var(--bittersweet)';
+        }, 1500);
+      });
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
